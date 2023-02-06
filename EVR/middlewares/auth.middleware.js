@@ -1,5 +1,5 @@
 const { ApiError } = require('../errors');
-const { statusCodes, constant, tokenTypeEnum } = require("../constants");
+const { statusCodes, constant, tokenTypeEnum } = require('../constants');
 const { authService, tokenService } = require('../services');
 
 module.exports = {
@@ -13,12 +13,13 @@ module.exports = {
 
             tokenService.checkToken(access_token);
 
-            const tokenInfo = await authService.getOneWithUser({ access_token })
+            const tokenInfo = await authService.getOneWithUser({ access_token });
 
             if (!tokenInfo) {
                 return next(new ApiError('Not valid token', statusCodes.UNAUTHORIZED));
             }
 
+            req.tokenInfo = tokenInfo;
             next();
         } catch (e) {
             next(e);
@@ -47,4 +48,4 @@ module.exports = {
             next(e);
         }
     },
-}
+};
