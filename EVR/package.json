@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "lint": "eslint --fix --ext .js ."
+    "lint": "eslint --fix --ext .js .",
+    "dev" : "pm2 start app.js --watch --name mainServer --attach"
   },
   "author": "",
   "license": "ISC",
